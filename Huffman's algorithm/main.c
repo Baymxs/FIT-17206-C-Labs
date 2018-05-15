@@ -17,15 +17,18 @@ int main() {
         return 0;
 
     int direction;
+    int size_of_file;
+
+    fseek(fin, 0, SEEK_END);
+    size_of_file = ftell(fin);
 
     //c - Huffman code, d - Huffman decode
+    fseek(fin, 0, SEEK_SET);
     direction = fgetc(fin);
 
-    if(direction == 'c') {
+    if(direction == 'c' && (size_of_file != 1)) {
         compressionBlock(fin, fout);
     } else if(direction == 'd') {
         decompressionBlock(fin, fout);
     }
-
-
 }
